@@ -1,18 +1,18 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { createDrawerNavigator, useDrawerProgress } from '@react-navigation/drawer';
 import React from 'react';
-import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 // @ts-ignore
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types';
 import { DrawerTypes, TDrawerList } from './types';
 import DrawerContent from './DrawerContent';
-import { MAX_FONT_UPSCALE_FACTOR } from '../../../utils/device';
-import HomeScreen from '../../../screens/HomeScreen';
-import SettingsScreen from '../../../screens/SettingsScreen';
 import { styles } from './DrawerContent.styles';
-import ProfileScreen from '../../../screens/ProfileScreen';
+import SettingsScreen from '../../../screens/SettingsScreen.tsx';
+import ProfileScreen from '../../../screens/ProfileScreen.tsx';
+import HomeScreen from '../../../screens/HomeScreen.tsx';
+import ClientBottomTabNavigator from '../bottomTabsNavigator/ClientBottomTabNavigator.tsx';
 
 const Drawer = createDrawerNavigator<TDrawerList>();
 
@@ -30,6 +30,13 @@ const DrawerInterpolateScreen = () => {
       <Drawer.Navigator
         screenOptions={screenOptions}
         drawerContent={props => <DrawerContent navigation={props.navigation} />}>
+        <Drawer.Screen name="ClientBottomTabNavigator">
+          {props => (
+            <DrawerInterpolate {...props}>
+              <ClientBottomTabNavigator />
+            </DrawerInterpolate>
+          )}
+        </Drawer.Screen>
         <Drawer.Screen name="Home">
           {props => (
             <DrawerInterpolate {...props}>
@@ -95,10 +102,7 @@ const DrawerInterpolate = ({
             paddingTop: insets.top > 0 ? insets.top + 8 : 28,
           },
         ]}>
-        <Entypo name="menu" size={26} />
-        <Text style={styles.label} maxFontSizeMultiplier={MAX_FONT_UPSCALE_FACTOR}>
-          Menu
-        </Text>
+        <AntDesign name="menuunfold" size={26} />
       </TouchableOpacity>
       {children}
     </Animated.View>

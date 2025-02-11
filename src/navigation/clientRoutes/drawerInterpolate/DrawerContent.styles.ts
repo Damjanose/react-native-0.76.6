@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { typography } from '../../../utils/typography.ts';
+import colors from '../../../styles/colors';
 
 export const styles = StyleSheet.create({
   flex: {
@@ -39,7 +40,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
   menuContainer: {
     flexDirection: 'row',

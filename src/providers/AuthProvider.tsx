@@ -38,13 +38,14 @@ export const AuthProvider = ({ children }: Props) => {
       }
       setIsSigningIn(false);
     } catch (e) {
-      console.log(e, 'e');
+      console.log(e);
     }
   };
 
   const login = async (payload: LoginPayload) => {
-    console.log(payload);
-    setIsLoading(true);
+    if (payload) {
+      setIsLoading(true);
+    }
     try {
       // const { data } = await AuthService.login(payload);
       //   if (data.data.access_token) {
