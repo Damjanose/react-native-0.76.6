@@ -1,32 +1,55 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { BottomTabNavigatorParamList } from '../navigation/clientRoutes/bottomTabsNavigator/ClientBottomTabNavigator';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import colors from '../styles/colors';
 
-function HomeScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<BottomTabNavigatorParamList>>();
+const HomeScreen = () => {
+  const balance = 1000;
+  const history = [
+    { id: '1', action: 'Deposit', amount: 500 },
+    { id: '2', action: 'Withdrawal', amount: 200 },
+    { id: '3', action: 'Deposit', amount: 700 },
+  ];
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home</Text>
-      <Button title="Go to Reservation" onPress={() => navigation.navigate('Reservation')} />
+      <Text style={styles.balanceText}>Balance: ${balance}</Text>
+      <Text style={styles.historyTitle}>History</Text>
+      <FlatList
+        data={history}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.historyItem}>
+            <Text>{item.action}</Text>
+            <Text>${item.amount}</Text>
+          </View>
+        )}
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 20,
   },
-  text: {
+  balanceText: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  historyTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  historyItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGray,
   },
 });
 

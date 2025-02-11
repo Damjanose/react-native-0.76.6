@@ -1,32 +1,77 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { BottomTabNavigatorParamList } from '../navigation/clientRoutes/bottomTabsNavigator/ClientBottomTabNavigator';
+import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../styles/colors';
+import { useDrawerProgress } from '@react-navigation/drawer';
+import { interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-function ProfileScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<BottomTabNavigatorParamList>>();
+const settingsOptions = ['Personal Information', 'Update Profile', 'Notifications', 'Actions'];
+
+const supportOptions = ['Frequently Asked Questions', 'Help Section', 'Privacy & Policy', 'Share App'];
+
+const ProfileScreen = () => {
+  const drawerProgress = useDrawerProgress();
+
+  const animatedStyles = useAnimatedStyle(() => {
+    const scale = interpolate(drawerProgress.value, [0, 1], [1, 0.8]);
+    const borderRadius = interpolate(drawerProgress.value, [0, 1], [0, 34]);
+
+    return {
+      borderRadius,
+      transform: [{ scale }],
+    };
+  });
+
+  const renderItem = ({ item }: { item: string }) => (
+    <TouchableOpacity style={styles.button}>
+      <Text>{item}</Text>
+      <Icon name="chevron-right" size={20} color={colors.darkGray} />
+    </TouchableOpacity>
+  );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Profile</Text>
-      <Button title="Go to Reservation" onPress={() => navigation.navigate('Reservation')} />
-    </View>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={[styles.container, animatedStyles]}>
+        <Text style={styles.sectionTitle}>Settings</Text>
+        <FlatList data={settingsOptions} renderItem={renderItem} keyExtractor={item => item} scrollEnabled={false} />
+
+        <Text style={[styles.sectionTitle]}>Support</Text>
+        <FlatList data={supportOptions} renderItem={renderItem} keyExtractor={item => item} scrollEnabled={false} />
+
+        <TouchableOpacity>
+          <Text style={styles.logoutText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    justifyContent: 'center',
+    padding: 20,
+  },
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  button: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGray,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
-  text: {
-    fontSize: 24,
+  logoutText: {
+    color: colors.error,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 20,
   },
 });
 

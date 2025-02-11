@@ -18,5 +18,7 @@ export default {
   limeDarken1: '#C0CA33',
   alpha2LimeDarken1: 'rgba(192, 202, 51, 0.2)',
   warning: '#FFC107',
-  gray: '#C0C0C0',
+  gray: '#949393',
+  lightGray: '#C0C0C0',
+  darkGray: '#525151',
 };
