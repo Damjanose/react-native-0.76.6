@@ -5,28 +5,33 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 export type BottomTabNavigatorParamList = {
   Home: undefined;
   Settings: undefined;
+  Profile: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 
-const withBottomTabs = (WrappedComponent: React.ComponentType<any>) => {
+const withTabs = (WrappedComponent: React.ComponentType<any>, screenName: keyof BottomTabNavigatorParamList) => {
   return (props: any) => {
     return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color, size }) => {
-            const iconName = route.name === 'Home' ? 'home' : 'cog';
+            const iconMapping = {
+              Home: 'home',
+              Settings: 'cog',
+              Profile: 'account',
+            };
+            const iconName = iconMapping[route.name] || 'help-circle';
             return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: 'blue',
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
         })}>
-        <Tab.Screen name="Home">{() => <WrappedComponent {...props} />}</Tab.Screen>
-        <Tab.Screen name="Settings">{() => <WrappedComponent {...props} />}</Tab.Screen>
+        <Tab.Screen name={screenName}>{() => <WrappedComponent {...props} />}</Tab.Screen>
       </Tab.Navigator>
     );
   };
 };
 
-export default withBottomTabs;
+export default withTabs;

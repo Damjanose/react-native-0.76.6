@@ -9,10 +9,8 @@ import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript
 import { DrawerTypes, TDrawerList } from './types';
 import DrawerContent from './DrawerContent';
 import { MAX_FONT_UPSCALE_FACTOR } from '../../../utils/device';
-import HomeScreen from '../../../screens/HomeScreen';
-import SettingsScreen from '../../../screens/SettingsScreen';
 import { styles } from './DrawerContent.styles';
-import ProfileScreen from '../../../screens/ProfileScreen';
+import { HomeScreenWithTabs, ProfileScreenWithTabs, SettingsScreenWithTabs } from '../bottomTabsNavigator/withTabs.tsx';
 
 const Drawer = createDrawerNavigator<TDrawerList>();
 
@@ -33,7 +31,7 @@ const DrawerInterpolateScreen = () => {
         <Drawer.Screen name="Home">
           {props => (
             <DrawerInterpolate {...props}>
-              <HomeScreen />
+              <HomeScreenWithTabs />
             </DrawerInterpolate>
           )}
         </Drawer.Screen>
@@ -45,7 +43,7 @@ const DrawerInterpolateScreen = () => {
           }}>
           {() => (
             <View style={styles.container}>
-              <SettingsScreen />
+              <SettingsScreenWithTabs />
             </View>
           )}
         </Drawer.Screen>
@@ -56,7 +54,7 @@ const DrawerInterpolateScreen = () => {
           }}>
           {() => (
             <View style={styles.container}>
-              <ProfileScreen />
+              <ProfileScreenWithTabs />
             </View>
           )}
         </Drawer.Screen>

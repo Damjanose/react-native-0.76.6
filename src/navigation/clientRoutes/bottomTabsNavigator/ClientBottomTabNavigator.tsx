@@ -1,8 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import SettingsScreen from '../../../screens/SettingsScreen';
-import ProfileScreen from '../../../screens/ProfileScreen';
+import { ProfileScreenWithTabs, SettingsScreenWithTabs } from './withTabs.tsx';
 
 export type BottomTabNavigatorParamList = {
   Home: undefined;
@@ -24,8 +23,8 @@ const ClientBottomTabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
         headerShown: false,
       })}>
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreenWithTabs} />
+      <Tab.Screen name="Settings" component={SettingsScreenWithTabs} />
     </Tab.Navigator>
   );
 };
