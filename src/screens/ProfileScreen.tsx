@@ -36,7 +36,7 @@ const ProfileScreen = () => {
         <Text style={styles.sectionTitle}>Settings</Text>
         <FlatList data={settingsOptions} renderItem={renderItem} keyExtractor={item => item} scrollEnabled={false} />
 
-        <Text style={[styles.sectionTitle]}>Support</Text>
+        <Text style={[styles.sectionTitle, styles.mt_15]}>Support</Text>
         <FlatList data={supportOptions} renderItem={renderItem} keyExtractor={item => item} scrollEnabled={false} />
 
         <TouchableOpacity style={[styles.flex, styles.button]}>
@@ -67,6 +67,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 5,
+  },
+  mt_15: {
     marginTop: 15,
   },
   button: {
