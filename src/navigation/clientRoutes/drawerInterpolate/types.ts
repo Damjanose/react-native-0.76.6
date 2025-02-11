@@ -4,7 +4,7 @@ import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript
 export type TDrawerList = {
   ClientBottomTabNavigator: undefined;
   Home: undefined;
-  Settings: undefined;
+  Reservation: undefined;
   Profile: undefined;
 };
 

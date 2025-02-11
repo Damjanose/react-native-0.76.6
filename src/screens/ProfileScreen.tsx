@@ -11,7 +11,7 @@ function ProfileScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Profile</Text>
-      <Button title="Go to Settings" onPress={() => navigation.navigate('Settings')} />
+      <Button title="Go to Reservation" onPress={() => navigation.navigate('Reservation')} />
     </View>
   );
 }

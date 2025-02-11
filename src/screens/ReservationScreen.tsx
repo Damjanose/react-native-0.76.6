@@ -5,12 +5,12 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { BottomTabNavigatorParamList } from '../navigation/clientRoutes/bottomTabsNavigator/ClientBottomTabNavigator';
 import colors from '../styles/colors';
 
-function SettingsScreen() {
+function ReservationScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<BottomTabNavigatorParamList>>();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Settings</Text>
+      <Text style={styles.text}>Reservation</Text>
       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
     </View>
   );
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SettingsScreen;
+export default ReservationScreen;

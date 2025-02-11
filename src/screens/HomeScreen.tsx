@@ -11,7 +11,7 @@ function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Home</Text>
-      <Button title="Go to Settings" onPress={() => navigation.navigate('Settings')} />
+      <Button title="Go to Reservation" onPress={() => navigation.navigate('Reservation')} />
     </View>
   );
 }
