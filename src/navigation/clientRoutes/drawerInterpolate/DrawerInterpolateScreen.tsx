@@ -9,9 +9,7 @@ import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript
 import { DrawerTypes, TDrawerList } from './types';
 import DrawerContent from './DrawerContent';
 import { styles } from './DrawerContent.styles';
-import ReservationScreen from '../../../screens/ReservationScreen';
 import ProfileScreen from '../../../screens/ProfileScreen';
-import HomeScreen from '../../../screens/HomeScreen';
 import ClientBottomTabNavigator from '../bottomTabsNavigator/ClientBottomTabNavigator';
 
 const Drawer = createDrawerNavigator<TDrawerList>();
@@ -31,30 +29,7 @@ const DrawerInterpolateScreen = () => {
         screenOptions={screenOptions}
         drawerContent={props => <DrawerContent navigation={props.navigation} />}>
         <Drawer.Screen name="ClientBottomTabNavigator">
-          {props => (
-            <DrawerInterpolate {...props}>
-              <ClientBottomTabNavigator />
-            </DrawerInterpolate>
-          )}
-        </Drawer.Screen>
-        <Drawer.Screen name="Home">
-          {props => (
-            <DrawerInterpolate {...props}>
-              <HomeScreen />
-            </DrawerInterpolate>
-          )}
-        </Drawer.Screen>
-
-        <Drawer.Screen
-          name="Reservation"
-          options={{
-            swipeEnabled: false,
-          }}>
-          {() => (
-            <View style={styles.container}>
-              <ReservationScreen />
-            </View>
-          )}
+          {props => <ClientBottomTabNavigator navigation={...props.navigation} />}
         </Drawer.Screen>
         <Drawer.Screen
           name="Profile"
@@ -72,7 +47,7 @@ const DrawerInterpolateScreen = () => {
   );
 };
 
-const DrawerInterpolate = ({
+export const DrawerInterpolate = ({
   navigation,
   children,
 }: {
