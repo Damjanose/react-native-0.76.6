@@ -1,8 +1,6 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../styles/colors';
-import { useDrawerProgress } from '@react-navigation/drawer';
-import { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { FullScreenCard } from '../components/Cards/FullScreenCard';
 
@@ -11,18 +9,6 @@ const settingsOptions = ['Personal Information', 'Update Profile', 'Notification
 const supportOptions = ['Frequently Asked Questions', 'Help Section', 'Privacy & Policy', 'Share App'];
 
 const ProfileScreen = () => {
-  const drawerProgress = useDrawerProgress();
-
-  const animatedStyles = useAnimatedStyle(() => {
-    const scale = interpolate(drawerProgress.value, [0, 1], [1, 0.8]);
-    const borderRadius = interpolate(drawerProgress.value, [0, 1], [0, 34]);
-
-    return {
-      borderRadius,
-      transform: [{ scale }],
-    };
-  });
-
   const renderItem = ({ item }: { item: string }) => (
     <TouchableOpacity style={styles.button}>
       <Text>{item}</Text>
@@ -32,7 +18,7 @@ const ProfileScreen = () => {
 
   return (
     <FullScreenCard>
-      <View style={[styles.container, animatedStyles]}>
+      <View style={styles.container}>
         <Text style={styles.sectionTitle}>Settings</Text>
         <FlatList data={settingsOptions} renderItem={renderItem} keyExtractor={item => item} scrollEnabled={false} />
 

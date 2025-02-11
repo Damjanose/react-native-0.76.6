@@ -16,7 +16,7 @@ export type BottomTabNavigatorParamList = {
 
 const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 
-const ClientBottomTabNavigator = ({ navigation }: { navigation: DrawerNavigationHelpers }) => {
+const ClientBottomTabNavigator = ({ navigation }: { navigation?: DrawerNavigationHelpers }) => {
   console.log(navigation);
   return (
     <Tab.Navigator screenOptions={{ headerShown: false, animation: 'shift' }} tabBar={props => <Tabbar {...props} />}>

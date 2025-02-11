@@ -28,9 +28,7 @@ const DrawerInterpolateScreen = () => {
       <Drawer.Navigator
         screenOptions={screenOptions}
         drawerContent={props => <DrawerContent navigation={props.navigation} />}>
-        <Drawer.Screen name="ClientBottomTabNavigator">
-          {props => <ClientBottomTabNavigator navigation={...props.navigation} />}
-        </Drawer.Screen>
+        <Drawer.Screen name="ClientBottomTabNavigator">{props => <ClientBottomTabNavigator />}</Drawer.Screen>
         <Drawer.Screen
           name="Profile"
           options={{
