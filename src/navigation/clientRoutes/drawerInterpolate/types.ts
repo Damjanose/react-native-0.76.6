@@ -2,7 +2,7 @@
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/module/src/types';
 
 export type TDrawerList = {
-  DrawerInterpolateNested: undefined;
+  ClientBottomTabNavigator: undefined;
   Home: undefined;
   Settings: undefined;
   Profile: undefined;

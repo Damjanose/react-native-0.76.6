@@ -10,9 +10,10 @@ import { DrawerTypes, TDrawerList } from './types';
 import DrawerContent from './DrawerContent';
 import { MAX_FONT_UPSCALE_FACTOR } from '../../../utils/device';
 import { styles } from './DrawerContent.styles';
-import ClientBottomTabNavigator from '../bottomTabsNavigator/ClientBottomTabNavigator.tsx';
 import SettingsScreen from '../../../screens/SettingsScreen.tsx';
 import ProfileScreen from '../../../screens/ProfileScreen.tsx';
+import HomeScreen from '../../../screens/HomeScreen.tsx';
+import ClientBottomTabNavigator from '../bottomTabsNavigator/ClientBottomTabNavigator.tsx';
 
 const Drawer = createDrawerNavigator<TDrawerList>();
 
@@ -30,10 +31,17 @@ const DrawerInterpolateScreen = () => {
       <Drawer.Navigator
         screenOptions={screenOptions}
         drawerContent={props => <DrawerContent navigation={props.navigation} />}>
-        <Drawer.Screen name="Home">
+        <Drawer.Screen name="ClientBottomTabNavigator">
           {props => (
             <DrawerInterpolate {...props}>
               <ClientBottomTabNavigator />
+            </DrawerInterpolate>
+          )}
+        </Drawer.Screen>
+        <Drawer.Screen name="Home">
+          {props => (
+            <DrawerInterpolate {...props}>
+              <HomeScreen />
             </DrawerInterpolate>
           )}
         </Drawer.Screen>
