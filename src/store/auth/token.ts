@@ -14,21 +14,13 @@ export const getAccessTokenFromEncryptedStorage = async (): Promise<string | voi
 };
 
 export const setAccessTokenInEncryptedStorage = async (token: string): Promise<void> => {
-  try {
-    await EncryptedStorage.setItem(ACCESS_TOKEN, token);
-  } catch (e) {
-    console.log(e, 'aa');
-  }
+  await EncryptedStorage.setItem(ACCESS_TOKEN, token);
 };
 
 export const clearAccessTokenFromEncryptedStorage = async (): Promise<void> => {
-  try {
-    const AT = await getAccessTokenFromEncryptedStorage();
-    if (AT) {
-      await EncryptedStorage.removeItem(ACCESS_TOKEN);
-    }
-  } catch (e) {
-    console.log(e, 'aaaa');
+  const AT = await getAccessTokenFromEncryptedStorage();
+  if (AT) {
+    await EncryptedStorage.removeItem(ACCESS_TOKEN);
   }
 };
 
@@ -45,20 +37,12 @@ export const getRefreshTokenFromEncryptedStorage = async (): Promise<string | vo
 };
 
 export const setRefreshTokenInEncryptedStorage = async (token: string): Promise<void> => {
-  try {
-    await EncryptedStorage.setItem(REFRESH_TOKEN, token);
-  } catch (e) {
-    console.log(e, 'aaaq');
-  }
+  await EncryptedStorage.setItem(REFRESH_TOKEN, token);
 };
 
 export const clearRefreshTokenFromEncryptedStorage = async (): Promise<void> => {
-  try {
-    const RT = await getRefreshTokenFromEncryptedStorage();
-    if (RT) {
-      await EncryptedStorage.removeItem(REFRESH_TOKEN);
-    }
-  } catch (e) {
-    console.log(e, 'as');
+  const RT = await getRefreshTokenFromEncryptedStorage();
+  if (RT) {
+    await EncryptedStorage.removeItem(REFRESH_TOKEN);
   }
 };

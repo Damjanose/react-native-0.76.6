@@ -42,7 +42,6 @@ const RegisterScreen: React.FC<NavigationProps> = ({ navigation }) => {
     } else {
       navigation.navigate('OtpScreen');
     }
-    console.log(payload, 'otp');
   };
 
   const handlePasswordChange = (value: string) => {
