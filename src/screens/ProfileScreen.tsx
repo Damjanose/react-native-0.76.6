@@ -1,9 +1,10 @@
 import React from 'react';
-import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../styles/colors';
 import { useDrawerProgress } from '@react-navigation/drawer';
 import { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { FullScreenCard } from '../components/Cards/FullScreenCard';
 
 const settingsOptions = ['Personal Information', 'Update Profile', 'Notifications', 'Actions'];
 
@@ -30,7 +31,7 @@ const ProfileScreen = () => {
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <FullScreenCard>
       <View style={[styles.container, animatedStyles]}>
         <Text style={styles.sectionTitle}>Settings</Text>
         <FlatList data={settingsOptions} renderItem={renderItem} keyExtractor={item => item} scrollEnabled={false} />
@@ -38,17 +39,24 @@ const ProfileScreen = () => {
         <Text style={[styles.sectionTitle]}>Support</Text>
         <FlatList data={supportOptions} renderItem={renderItem} keyExtractor={item => item} scrollEnabled={false} />
 
-        <TouchableOpacity>
+        <TouchableOpacity style={[styles.flex, styles.button]}>
           <Text style={styles.logoutText}>Logout</Text>
+          <Icon name="logout" size={20} color={colors.error} />
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </FullScreenCard>
   );
 };
 
 const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
+  },
+  flex: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   container: {
     flex: 1,
@@ -69,6 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoutText: {
+    marginTop: 10,
     color: colors.error,
     fontSize: 16,
     fontWeight: 'bold',

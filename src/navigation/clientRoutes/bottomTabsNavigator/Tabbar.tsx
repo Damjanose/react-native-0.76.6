@@ -26,7 +26,7 @@ const Tabbar = ({ state, insets, descriptors, navigation }: BottomTabBarProps) =
   const bottom = insets.bottom >= 32 ? insets.bottom + 4 : insets.bottom > 24 ? insets.bottom : 32;
 
   return (
-    <Animated.View style={[styles.container, style, { bottom }]}>
+    <Animated.View style={[styles.container, { bottom }]}>
       <View style={[styles.firstInnerContainer, shadow]}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
