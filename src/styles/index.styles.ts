@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   textCenter: { textAlign: 'center' },
@@ -6,4 +6,4 @@ export const styles = StyleSheet.create({
   padBottom30: { paddingBottom: 30 },
   borderTopWidth2: { borderTopWidth: 0.2 },
   borderBottomWidth0: { borderBottomWidth: 0 },
-})
+});

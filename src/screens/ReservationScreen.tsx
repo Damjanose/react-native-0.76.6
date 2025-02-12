@@ -1,32 +1,54 @@
-import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { BottomTabNavigatorParamList } from '../navigation/clientRoutes/bottomTabsNavigator/ClientBottomTabNavigator';
-import colors from '../styles/colors';
+import React, { useState } from 'react';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
+import { FullScreenCard } from '../components/Cards/FullScreenCard';
 
-function ReservationScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<BottomTabNavigatorParamList>>();
+const FirstTab = () => (
+  <View style={styles.container}>
+    <Text>First Tab</Text>
+  </View>
+);
+
+const SecondTab = () => (
+  <View style={styles.container}>
+    <Text>Second Tab</Text>
+  </View>
+);
+
+const renderScene = SceneMap({
+  first: FirstTab,
+  second: SecondTab,
+});
+
+const ReservationScreen = () => {
+  const layout = useWindowDimensions();
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'first', title: 'First' },
+    { key: 'second', title: 'Second' },
+  ]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Reservation</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-    </View>
+    <FullScreenCard>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+        renderTabBar={props => <TabBar {...props} style={styles.tabBar} />}
+      />
+    </FullScreenCard>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  tabBar: {
+    backgroundColor: 'white',
   },
 });
 
