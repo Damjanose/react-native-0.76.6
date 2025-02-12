@@ -16,22 +16,19 @@ export type BottomTabNavigatorParamList = {
 
 const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 
-const ClientBottomTabNavigator = ({ navigation }: { navigation?: DrawerNavigationHelpers }) => {
-  console.log(navigation);
-  return (
-    <Tab.Navigator screenOptions={{ headerShown: false, animation: 'shift' }} tabBar={props => <Tabbar {...props} />}>
-      <Tab.Screen name="Home">
-        {props => (
-          <DrawerInterpolate {...props}>
-            <HomeScreen />
-          </DrawerInterpolate>
-        )}
-      </Tab.Screen>
+const ClientBottomTabNavigator = () => (
+  <Tab.Navigator screenOptions={{ headerShown: false, animation: 'shift' }} tabBar={props => <Tabbar {...props} />}>
+    <Tab.Screen name="Home">
+      {props => (
+        <DrawerInterpolate {...props}>
+          <HomeScreen />
+        </DrawerInterpolate>
+      )}
+    </Tab.Screen>
 
-      <Tab.Screen name="Reservation" component={ReservationScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-    </Tab.Navigator>
-  );
-};
+    <Tab.Screen name="Reservation" component={ReservationScreen} />
+    <Tab.Screen name="Profile" component={ProfileScreen} />
+  </Tab.Navigator>
+);
 
 export default ClientBottomTabNavigator;
