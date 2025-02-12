@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { styles } from './LoginScreen.styles.ts';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -8,7 +8,6 @@ import { TextInput, TextInputIcon } from '../../../components/TextInput';
 import useBlackOrWhite from '../../../hooks/useBlackOrWhite.ts';
 import useAuth from '../../../providers/hooks/useAuth.ts';
 import { LoginPayload } from '../../../services/auth/types.ts';
-import { Bee } from '../../../assets/images';
 
 type NavigationProps = { navigation: NavigationProp<any> };
 
@@ -37,7 +36,7 @@ const LoginScreen: React.FC<NavigationProps> = ({ navigation }) => {
             <View style={styles.header}>
               <View style={styles.logoWrapper}>
                 <View style={styles.innerLogo}>
-                  <Image source={Bee} style={styles.logoImage} resizeMode="contain" />
+                  <View style={styles.darkContainer} />
                 </View>
               </View>
             </View>
