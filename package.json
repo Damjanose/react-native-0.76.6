@@ -1,5 +1,5 @@
 {
-  "name": "beetaxiclient",
+  "name": "rn-boilerplate",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -33,6 +33,7 @@
     "react-native-pager-view": "^6.7.0",
     "react-native-paper": "^5.13.1",
     "react-native-reanimated": "^3.16.7",
+    "react-native-rename": "^3.2.14",
     "react-native-safe-area-context": "^5.1.0",
     "react-native-screens": "^4.5.0",
     "react-native-tab-view": "^4.0.5",

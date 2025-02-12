@@ -1,4 +1,4 @@
-package com.beetaxiclient
+package com.damjano.boilerplare
 
 import android.app.Application
 import com.facebook.react.PackageList
