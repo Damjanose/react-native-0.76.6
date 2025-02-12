@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
-import { FullScreenCard } from '../components/Cards/FullScreenCard';
+import { TabBar, TabView } from 'react-native-tab-view';
+import colors from '../styles/colors';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { isIOS } from '../utils/device.ts';
 
 const FirstTab = () => (
   <View style={styles.container}>
-    <Text>First Tab</Text>
+    <Text>First Tab Content</Text>
   </View>
 );
 
 const SecondTab = () => (
   <View style={styles.container}>
-    <Text>Second Tab</Text>
+    <Text>Second Tab Content</Text>
   </View>
 );
-
-const renderScene = SceneMap({
-  first: FirstTab,
-  second: SecondTab,
-});
 
 const ReservationScreen = () => {
   const layout = useWindowDimensions();
@@ -28,16 +25,36 @@ const ReservationScreen = () => {
     { key: 'second', title: 'Second' },
   ]);
 
+  const renderScene = ({ route }: { route: { key: string } }) => {
+    switch (route.key) {
+      case 'first':
+        return <FirstTab />;
+      case 'second':
+        return <SecondTab />;
+      default:
+        return null;
+    }
+  };
+
+  const insets = useSafeAreaInsets();
+  const paddingTop = insets.top > 24 ? (isIOS ? insets.top : insets.top + 12) : 32;
+
   return (
-    <FullScreenCard>
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-        renderTabBar={props => <TabBar {...props} style={styles.tabBar} />}
-      />
-    </FullScreenCard>
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+      renderTabBar={props => (
+        <TabBar
+          {...props}
+          style={[styles.tabBar, { paddingTop }]}
+          indicatorStyle={styles.indicator}
+          activeColor="black"
+          inactiveColor="gray"
+        />
+      )}
+    />
   );
 };
 
@@ -46,9 +63,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: colors.white,
   },
   tabBar: {
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
+  },
+  indicator: {
+    backgroundColor: colors.black,
+    height: 2,
   },
 });
 
