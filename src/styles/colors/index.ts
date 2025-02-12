@@ -8,6 +8,7 @@ export default {
   accent: '#424242',
   error: '#FF5252',
   info: '#2196F3',
+  link: '#3498db',
   success: '#4CAF50',
   greenLighten1: '#66BB6A',
   alpha2GreenLighten1: 'rgba(102, 187, 106, 0.2)',
@@ -22,6 +23,9 @@ export default {
   lightGray: '#C0C0C0',
   darkGray: '#525151',
   red: '#F44336',
+  darkRed: '#b20000',
   green: '#4CAF50',
   text: '#424242',
+  input: '#ccc',
+  darkGrey: '#333333',
 };

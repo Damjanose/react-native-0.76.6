@@ -8,13 +8,13 @@ export const styles = StyleSheet.create({
   },
   hr: {
     height: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     left: 8,
   },
   implementedWith: {
     paddingLeft: 8,
     paddingVertical: 16,
-    color: 'white',
+    color: colors.white,
     fontSize: 18,
     fontFamily: typography.medium,
   },
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
   },
   navigatorContainer: {
     flex: 1,
-    backgroundColor: '#575454',
+    backgroundColor: colors.darkGrey,
   },
   container: {
     flex: 1,
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     borderRadius: 16,
   },
   drawerItemLabel: {
-    color: 'white',
+    color: colors.white,
     marginLeft: 15,
     fontSize: 16,
     fontFamily: typography.regular,
