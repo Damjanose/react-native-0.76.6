@@ -15,7 +15,9 @@ export type BottomTabNavigatorParamList = {
 const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 
 const ClientBottomTabNavigator = () => (
-  <Tab.Navigator screenOptions={{ headerShown: false, animation: 'shift' }} tabBar={props => <Tabbar {...props} />}>
+  <Tab.Navigator
+    screenOptions={{ headerShown: false, animation: 'shift', lazy: true }}
+    tabBar={props => <Tabbar {...props} />}>
     <Tab.Screen name="Home">
       {props => (
         <DrawerInterpolate {...props}>
