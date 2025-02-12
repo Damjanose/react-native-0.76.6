@@ -9,10 +9,8 @@ import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript
 import { DrawerTypes, TDrawerList } from './types';
 import DrawerContent from './DrawerContent';
 import { styles } from './DrawerContent.styles';
-import SettingsScreen from '../../../screens/SettingsScreen.tsx';
-import ProfileScreen from '../../../screens/ProfileScreen.tsx';
-import HomeScreen from '../../../screens/HomeScreen.tsx';
-import ClientBottomTabNavigator from '../bottomTabsNavigator/ClientBottomTabNavigator.tsx';
+import ProfileScreen from '../../../screens/ProfileScreen';
+import ClientBottomTabNavigator from '../bottomTabsNavigator/ClientBottomTabNavigator';
 
 const Drawer = createDrawerNavigator<TDrawerList>();
 
@@ -30,32 +28,7 @@ const DrawerInterpolateScreen = () => {
       <Drawer.Navigator
         screenOptions={screenOptions}
         drawerContent={props => <DrawerContent navigation={props.navigation} />}>
-        <Drawer.Screen name="ClientBottomTabNavigator">
-          {props => (
-            <DrawerInterpolate {...props}>
-              <ClientBottomTabNavigator />
-            </DrawerInterpolate>
-          )}
-        </Drawer.Screen>
-        <Drawer.Screen name="Home">
-          {props => (
-            <DrawerInterpolate {...props}>
-              <HomeScreen />
-            </DrawerInterpolate>
-          )}
-        </Drawer.Screen>
-
-        <Drawer.Screen
-          name="Settings"
-          options={{
-            swipeEnabled: false,
-          }}>
-          {() => (
-            <View style={styles.container}>
-              <SettingsScreen />
-            </View>
-          )}
-        </Drawer.Screen>
+        <Drawer.Screen name="ClientBottomTabNavigator">{props => <ClientBottomTabNavigator />}</Drawer.Screen>
         <Drawer.Screen
           name="Profile"
           options={{
@@ -72,7 +45,7 @@ const DrawerInterpolateScreen = () => {
   );
 };
 
-const DrawerInterpolate = ({
+export const DrawerInterpolate = ({
   navigation,
   children,
 }: {

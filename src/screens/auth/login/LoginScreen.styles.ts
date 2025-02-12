@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../../styles/colors';
 
 export const styles = StyleSheet.create({
   fullHeight: {
@@ -13,7 +14,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderTopLeftRadius: 50,
     marginTop: -20,
     paddingTop: 30,
@@ -23,20 +24,20 @@ export const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '600',
     marginVertical: 20,
-    color: '#000',
+    color: colors.black,
   },
   inputContainer: {
     width: '80%',
   },
   input: {
     height: 50,
-    borderColor: '#ccc',
+    borderColor: colors.input,
     borderRadius: 10,
     marginBottom: 20,
     paddingHorizontal: 10,
   },
   button: {
-    backgroundColor: '#000',
+    backgroundColor: colors.black,
     width: '80%',
     height: 50,
     borderRadius: 10,
@@ -45,19 +46,19 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonText: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 18,
     fontWeight: 'bold',
   },
   footerText: {
     marginVertical: 20,
-    color: '#000',
+    color: colors.black,
     fontSize: 14,
     marginTop: 40,
   },
-  link: { color: '#3498db', fontWeight: 'bold', marginLeft: 5 },
+  link: { color: colors.link, fontWeight: 'bold', marginLeft: 5 },
   errorStyle: {
-    color: '#b20000',
+    color: colors.darkRed,
     alignSelf: 'center',
     marginTop: -5,
     fontWeight: '700',
@@ -74,7 +75,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: 80,
     height: 80,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     padding: 10,
     borderRadius: 20,
     borderTopRightRadius: 0,

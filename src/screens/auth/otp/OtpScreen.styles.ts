@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../../styles/colors';
 
 export const styles = StyleSheet.create({
   fullHeight: {
@@ -7,7 +8,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderTopLeftRadius: 50,
     marginTop: -20,
     paddingTop: 30,
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   logo: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -31,7 +32,7 @@ export const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '600',
     marginVertical: 20,
-    color: '#000',
+    color: colors.black,
   },
   inputContainer: {
     width: '80%',
@@ -44,24 +45,24 @@ export const styles = StyleSheet.create({
   },
   otpPinCodeContainer: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: colors.input,
     borderRadius: 10,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     height: 50,
     width: 40,
   },
   otpPinCodeText: {
     fontSize: 18,
-    color: '#000',
+    color: colors.black,
   },
   otpFocusStick: {
-    backgroundColor: '#3498db',
+    backgroundColor: colors.link,
   },
   otpFocusedPinCodeContainer: {
-    borderColor: '#3498db',
+    borderColor: colors.link,
   },
   button: {
-    backgroundColor: '#000',
+    backgroundColor: colors.black,
     width: '80%',
     height: 50,
     borderRadius: 10,
@@ -70,7 +71,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonText: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 18,
     fontWeight: 'bold',
   },
@@ -79,10 +80,10 @@ export const styles = StyleSheet.create({
     color: '#000',
     fontSize: 14,
   },
-  link: { color: '#3498db', fontWeight: 'bold', marginLeft: 5 },
+  link: { color: colors.link, fontWeight: 'bold', marginLeft: 5 },
   topTitle: {
     fontSize: 24,
-    color: '#fff',
+    color: colors.white,
     textAlign: 'center',
     flex: 1,
     marginLeft: -30,

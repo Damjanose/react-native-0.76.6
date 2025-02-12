@@ -10,7 +10,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@gorhom/animated-tabbar": "^2.1.2",
     "@react-native-async-storage/async-storage": "^2.1.0",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/drawer": "^7.1.1",
@@ -21,6 +20,7 @@
     "babel-plugin-module-resolver": "^5.0.2",
     "react": "^18.3.1",
     "react-native": "0.76.6",
+    "react-native-animatable": "^1.4.0",
     "react-native-bootsplash": "^6.3.2",
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-encrypted-storage": "^4.0.3",

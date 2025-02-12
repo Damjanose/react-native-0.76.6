@@ -26,7 +26,7 @@ const DrawerContent = ({ navigation }: { navigation: DrawerNavigationHelpers }) 
         </TouchableOpacity>
 
         <DrawerContentItem label="Home" icon="home" navigation={navigation} route="Home" />
-        <DrawerContentItem label="Settings" icon="setting" navigation={navigation} route="Settings" />
+        <DrawerContentItem label="Reservation" icon="plus" navigation={navigation} route="Reservation" />
         <DrawerContentItem label="Profile" icon="user" navigation={navigation} route="Profile" />
 
         <TouchableOpacity style={styles.drawerItemContainer} onPress={logout}>

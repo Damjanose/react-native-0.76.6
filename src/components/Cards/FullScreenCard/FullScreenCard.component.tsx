@@ -5,11 +5,12 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { fullHeight } from './FullScreenCard.styles';
 import GoBackHeader from '../../GoBackHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import colors from '../../../styles/colors';
 
 type Props = Omit<CardProps & { stickyHeader?: boolean }, 'theme'> & { mode?: 'elevated'; title?: string };
 export const { container } = StyleSheet.create({ container: { height: '100%', borderRadius: 0 } });
 export const FullScreenCard = (props: Props) => (
-  <SafeAreaView>
+  <SafeAreaView style={{ backgroundColor: colors.white }}>
     <KeyboardAwareScrollView
       stickyHeaderIndices={props.stickyHeader ? [0] : []}
       bounces={false}

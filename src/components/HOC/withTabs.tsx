@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 export type BottomTabNavigatorParamList = {
   Home: undefined;
-  Settings: undefined;
+  Reservation: undefined;
   Profile: undefined;
 };
 
@@ -18,7 +18,7 @@ const withTabs = (WrappedComponent: React.ComponentType<any>, screenName: keyof 
           tabBarIcon: ({ color, size }) => {
             const iconMapping = {
               Home: 'home',
-              Settings: 'cog',
+              Reservation: 'plus',
               Profile: 'account',
             };
             const iconName = iconMapping[route.name] || 'help-circle';
