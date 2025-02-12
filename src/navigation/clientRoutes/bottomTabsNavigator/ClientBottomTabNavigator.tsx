@@ -4,7 +4,6 @@ import HomeScreen from '../../../screens/HomeScreen';
 import ProfileScreen from '../../../screens/ProfileScreen';
 import Tabbar from './Tabbar';
 import { DrawerInterpolate } from '../drawerInterpolate/DrawerInterpolateScreen';
-import TopTabsNavigationStack from '../TopTabsNavigator/TopTabsNavigationStack.tsx';
 
 export type BottomTabNavigatorParamList = {
   Home: undefined;
@@ -24,7 +23,6 @@ const ClientBottomTabNavigator = () => (
       )}
     </Tab.Screen>
 
-    <Tab.Screen name="Reservation" component={TopTabsNavigationStack} />
     <Tab.Screen name="Profile" component={ProfileScreen} />
   </Tab.Navigator>
 );
