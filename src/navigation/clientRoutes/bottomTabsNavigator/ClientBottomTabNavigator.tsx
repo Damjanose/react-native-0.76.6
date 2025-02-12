@@ -1,12 +1,10 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../../../screens/HomeScreen';
-import ReservationScreen from '../../../screens/ReservationScreen.tsx';
 import ProfileScreen from '../../../screens/ProfileScreen';
 import Tabbar from './Tabbar';
 import { DrawerInterpolate } from '../drawerInterpolate/DrawerInterpolateScreen';
-// @ts-ignore
-import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/module/src/types';
+import TopTabsNavigationStack from '../TopTabsNavigator/TopTabsNavigationStack.tsx';
 
 export type BottomTabNavigatorParamList = {
   Home: undefined;
@@ -26,7 +24,7 @@ const ClientBottomTabNavigator = () => (
       )}
     </Tab.Screen>
 
-    <Tab.Screen name="Reservation" component={ReservationScreen} />
+    <Tab.Screen name="Reservation" component={TopTabsNavigationStack} />
     <Tab.Screen name="Profile" component={ProfileScreen} />
   </Tab.Navigator>
 );

@@ -6,22 +6,29 @@ import { fullHeight } from './FullScreenCard.styles';
 import GoBackHeader from '../../GoBackHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import colors from '../../../styles/colors';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { isIOS } from '../../../utils/device.ts';
 
 type Props = Omit<CardProps & { stickyHeader?: boolean }, 'theme'> & { mode?: 'elevated'; title?: string };
 export const { container } = StyleSheet.create({ container: { height: '100%', borderRadius: 0 } });
-export const FullScreenCard = (props: Props) => (
-  <SafeAreaView style={{ backgroundColor: colors.white }}>
-    <KeyboardAwareScrollView
-      stickyHeaderIndices={props.stickyHeader ? [0] : []}
-      bounces={false}
-      nestedScrollEnabled
-      style={fullHeight}
-      showsVerticalScrollIndicator={false}>
-      {props.title && <GoBackHeader title={props.title} />}
-      {props.children}
-    </KeyboardAwareScrollView>
-  </SafeAreaView>
-);
+export const FullScreenCard = (props: Props) => {
+  const insets = useSafeAreaInsets();
+  const paddingTop = insets.top > 24 ? (isIOS ? insets.top : insets.top + 12) : 32;
+
+  return (
+    <SafeAreaView style={{ backgroundColor: colors.white, paddingTop }}>
+      <KeyboardAwareScrollView
+        stickyHeaderIndices={props.stickyHeader ? [0] : []}
+        bounces={false}
+        nestedScrollEnabled
+        style={fullHeight}
+        showsVerticalScrollIndicator={false}>
+        {props.title && <GoBackHeader title={props.title} />}
+        {props.children}
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
+  );
+};
 export const CardTitle = Card.Title;
 export const CardContent = Card.Content;
 export const CardActions = Card.Actions;
