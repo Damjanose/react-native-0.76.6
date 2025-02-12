@@ -90,4 +90,11 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  darkContainer: {
+    backgroundColor: colors.black,
+    padding: 20,
+    borderRadius: 20,
+    borderBottomLeftRadius: 0,
+    alignItems: 'center',
+  },
 });
