@@ -23,7 +23,7 @@ export const AuthContext = createContext(initialContextValue);
 export const AuthProvider = ({ children }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSigningIn, setIsSigningIn] = useState(true);
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [userId, setUserId] = useState('');
   const [userName, setUserName] = useState('');
   const { getError, setErrors, clearFieldError } = useErrors<LoginPayload>();
