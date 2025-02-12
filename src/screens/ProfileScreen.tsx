@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { FullScreenCard } from '../components/Cards/FullScreenCard';
 
 const settingsOptions = ['Personal Information', 'Update Profile', 'Notifications', 'Actions'];
-
 const supportOptions = ['Frequently Asked Questions', 'Help Section', 'Privacy & Policy', 'Share App'];
 
 const ProfileScreen = () => {

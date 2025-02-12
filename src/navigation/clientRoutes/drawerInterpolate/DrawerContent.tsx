@@ -16,30 +16,33 @@ const DrawerContent = ({ navigation }: { navigation: DrawerNavigationHelpers }) 
   return (
     <DrawerContentScrollView scrollEnabled contentContainerStyle={styles.flex}>
       <View style={styles.drawerScroll}>
-        <TouchableOpacity
-          style={styles.marginBottom}
-          onPress={() => {
-            StatusBar.setBarStyle('dark-content');
-            navigation.closeDrawer();
-          }}>
-          <AntDesign name="close" size={24} color={'white'} />
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity
+            style={styles.marginBottom}
+            onPress={() => {
+              StatusBar.setBarStyle('dark-content');
+              navigation.closeDrawer();
+            }}>
+            <AntDesign name="close" size={24} color={'white'} />
+          </TouchableOpacity>
 
-        <DrawerContentItem label="Home" icon="home" navigation={navigation} route="Home" />
-        <DrawerContentItem label="Reservation" icon="plus" navigation={navigation} route="Reservation" />
-        <DrawerContentItem label="Profile" icon="user" navigation={navigation} route="Profile" />
+          <DrawerContentItem label="Reservation" icon="carryout" navigation={navigation} route="Reservation" />
+          <View style={styles.hr} />
+        </View>
 
-        <TouchableOpacity style={styles.drawerItemContainer} onPress={logout}>
-          <AntDesign name={'logout'} color={'white'} size={22} />
-          <Text style={styles.drawerItemLabel} maxFontSizeMultiplier={MAX_FONT_UPSCALE_FACTOR}>
-            Logout
+        <View>
+          <TouchableOpacity style={styles.drawerItemContainer} onPress={logout}>
+            <AntDesign name={'logout'} color={'white'} size={22} />
+            <Text style={styles.drawerItemLabel} maxFontSizeMultiplier={MAX_FONT_UPSCALE_FACTOR}>
+              Logout
+            </Text>
+          </TouchableOpacity>
+
+          <View style={styles.hr} />
+          <Text style={styles.implementedWith} maxFontSizeMultiplier={MED_FONT_UPSCALE_FACTOR}>
+            {'Developed by:\nDamjano'}
           </Text>
-        </TouchableOpacity>
-
-        <View style={styles.hr} />
-        <Text style={styles.implementedWith} maxFontSizeMultiplier={MED_FONT_UPSCALE_FACTOR}>
-          {'Developed by:\nDamjano'}
-        </Text>
+        </View>
       </View>
     </DrawerContentScrollView>
   );

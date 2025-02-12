@@ -9,8 +9,8 @@ import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript
 import { DrawerTypes, TDrawerList } from './types';
 import DrawerContent from './DrawerContent';
 import { styles } from './DrawerContent.styles';
-import ProfileScreen from '../../../screens/ProfileScreen';
 import ClientBottomTabNavigator from '../bottomTabsNavigator/ClientBottomTabNavigator';
+import ReservationScreen from '../../../screens/ReservationScreen.tsx';
 
 const Drawer = createDrawerNavigator<TDrawerList>();
 
@@ -30,13 +30,13 @@ const DrawerInterpolateScreen = () => {
         drawerContent={props => <DrawerContent navigation={props.navigation} />}>
         <Drawer.Screen name="ClientBottomTabNavigator">{props => <ClientBottomTabNavigator />}</Drawer.Screen>
         <Drawer.Screen
-          name="Profile"
+          name="Reservation"
           options={{
             swipeEnabled: false,
           }}>
           {() => (
             <View style={styles.container}>
-              <ProfileScreen />
+              <ReservationScreen />
             </View>
           )}
         </Drawer.Screen>

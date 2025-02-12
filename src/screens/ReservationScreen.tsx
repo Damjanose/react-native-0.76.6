@@ -1,32 +1,76 @@
-import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { BottomTabNavigatorParamList } from '../navigation/clientRoutes/bottomTabsNavigator/ClientBottomTabNavigator';
+import React, { useState } from 'react';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { TabBar, TabView } from 'react-native-tab-view';
 import colors from '../styles/colors';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { isIOS } from '../utils/device.ts';
 
-function ReservationScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<BottomTabNavigatorParamList>>();
+const FirstTab = () => (
+  <View style={styles.container}>
+    <Text>First Tab Content</Text>
+  </View>
+);
+
+const SecondTab = () => (
+  <View style={styles.container}>
+    <Text>Second Tab Content</Text>
+  </View>
+);
+
+const ReservationScreen = () => {
+  const layout = useWindowDimensions();
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'first', title: 'First' },
+    { key: 'second', title: 'Second' },
+  ]);
+
+  const renderScene = ({ route }: { route: { key: string } }) => {
+    switch (route.key) {
+      case 'first':
+        return <FirstTab />;
+      case 'second':
+        return <SecondTab />;
+      default:
+        return null;
+    }
+  };
+
+  const insets = useSafeAreaInsets();
+  const paddingTop = insets.top > 24 ? (isIOS ? insets.top : insets.top + 12) : 32;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Reservation</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-    </View>
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+      renderTabBar={props => (
+        <TabBar
+          {...props}
+          style={[styles.tabBar, { paddingTop }]}
+          indicatorStyle={styles.indicator}
+          activeColor="black"
+          inactiveColor="gray"
+        />
+      )}
+    />
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: colors.white,
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  tabBar: {
+    backgroundColor: colors.white,
+  },
+  indicator: {
+    backgroundColor: colors.black,
+    height: 2,
   },
 });
 
