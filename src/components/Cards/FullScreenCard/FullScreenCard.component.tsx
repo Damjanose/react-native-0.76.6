@@ -1,16 +1,15 @@
 import React from 'react';
 import { Card } from 'react-native-paper';
 import { Props as CardProps } from 'react-native-paper/lib/typescript/components/Card/Card';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { fullHeight } from './FullScreenCard.styles';
 import GoBackHeader from '../../GoBackHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import colors from '../../../styles/colors';
-
-const TAB_BAR_HEIGHT = 60;
+import { TAB_BAR_HEIGHT } from '../../../constants/default.ts';
 
 type Props = Omit<CardProps & { stickyHeader?: boolean }, 'theme'> & { mode?: 'elevated'; title?: string };
-export const { container } = StyleSheet.create({ container: { flex: 1, borderRadius: 0 } });
+
 export const FullScreenCard = (props: Props) => {
   return (
     <SafeAreaView style={{ backgroundColor: colors.white, flex: 1 }}>
