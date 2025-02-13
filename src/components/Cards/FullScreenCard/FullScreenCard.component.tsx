@@ -9,7 +9,7 @@ import colors from '../../../styles/colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { isIOS } from '../../../utils/device.ts';
 
-const TABBAR_HEIGHT = 60;
+const TAB_BAR_HEIGHT = 60;
 
 type Props = Omit<CardProps & { stickyHeader?: boolean }, 'theme'> & { mode?: 'elevated'; title?: string };
 export const { container } = StyleSheet.create({ container: { flex: 1, borderRadius: 0 } });
@@ -19,7 +19,7 @@ export const FullScreenCard = (props: Props) => {
 
   return (
     <SafeAreaView style={{ backgroundColor: colors.white, paddingTop, flex: 1 }}>
-      <View style={{ flex: 1, paddingBottom: TABBAR_HEIGHT }}>
+      <View style={{ flex: 1, paddingBottom: TAB_BAR_HEIGHT }}>
         <KeyboardAwareScrollView
           stickyHeaderIndices={props.stickyHeader ? [0] : []}
           bounces={false}
@@ -33,6 +33,7 @@ export const FullScreenCard = (props: Props) => {
     </SafeAreaView>
   );
 };
+
 export const CardTitle = Card.Title;
 export const CardContent = Card.Content;
 export const CardActions = Card.Actions;
