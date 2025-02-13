@@ -6,7 +6,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { TextInput, TextInputIcon } from '../../../components/TextInput';
 import useBlackOrWhite from '../../../hooks/useBlackOrWhite.ts';
 import LinearGradient from 'react-native-linear-gradient';
-import { HeaderBackButton } from '@react-navigation/elements';
+import GoBackHeader from '../../../components/GoBackHeader.tsx';
 
 type NavigationProps = { navigation: NavigationProp<any> };
 
@@ -60,7 +60,7 @@ const RegisterScreen: React.FC<NavigationProps> = ({ navigation }) => {
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <KeyboardAwareScrollView contentContainerStyle={styles.keyboardScrollContainer}>
             <View style={styles.header}>
-              <HeaderBackButton onPress={() => navigation.goBack()} tintColor="#fff" displayMode="minimal" />
+              <GoBackHeader />
               <Text style={styles.signUp}>Sign Up</Text>
             </View>
             <View style={styles.container}>

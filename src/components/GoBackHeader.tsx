@@ -1,28 +1,40 @@
-import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { useNavigation } from '@react-navigation/native'
-import { NavigationScreensPropTypes } from '../types/navigation'
-import { CardTitle } from './Cards/FullScreenCard'
-import useBlackOrWhite from '../hooks/useBlackOrWhite'
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationScreensPropTypes } from '../types/navigation';
 
 type Props = {
-  handleOnNavigate?: () => void
-  title?: string
-}
+  handleOnNavigate?: () => void;
+  title?: string;
+};
 
-export default ({ handleOnNavigate, title }: Props) => {
-  const { goBack } = useNavigation<NavigationScreensPropTypes>()
-  const { whiteOrBlack, blackOrWhite: backgroundColor } = useBlackOrWhite()
+const GoBackHeader: React.FC<Props> = ({ handleOnNavigate, title }) => {
+  const { goBack } = useNavigation<NavigationScreensPropTypes>();
   const styles = StyleSheet.create({
-    title: { flex: 1, marginTop: -4 },
-    container: { flexDirection: 'row', backgroundColor, zIndex: 1000000000 },
-  })
+    container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      padding: 10,
+    },
+    icon: {
+      marginRight: 10,
+    },
+    title: {
+      flex: 1,
+      fontSize: 18,
+      color: '#fff',
+    },
+  });
 
   return (
-    <TouchableOpacity onPress={handleOnNavigate ? handleOnNavigate : goBack} style={styles.container}>
-      <MCIcon color={whiteOrBlack} size={40} name="chevron-left" />
-      <CardTitle title={title} style={styles.title} />
-    </TouchableOpacity>
-  )
-}
+    <View style={styles.container}>
+      <TouchableOpacity onPress={handleOnNavigate ? handleOnNavigate : goBack} style={styles.icon}>
+        <MCIcon color="#fff" size={30} name="chevron-left" />
+      </TouchableOpacity>
+      {title && <Text style={styles.title}>{title}</Text>}
+    </View>
+  );
+};
+
+export default GoBackHeader;

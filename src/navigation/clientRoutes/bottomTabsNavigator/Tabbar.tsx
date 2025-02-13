@@ -1,13 +1,7 @@
-import Animated, {
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, { useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import React, { useEffect } from 'react';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { ICONS, shadow } from './data';
 
@@ -16,24 +10,19 @@ const Tabbar = ({ state, insets, descriptors, navigation }: BottomTabBarProps) =
 
   useEffect(() => {
     progress.value = withDelay(75, withTiming(1));
-  }, []);
+  }, [progress]);
 
-  const style = useAnimatedStyle(() => ({
-    opacity: interpolate(progress.value, [0, 1], [0, 1]),
-    transform: [{ scale: interpolate(progress.value, [0, 1], [1.15, 1]) }],
-  }));
-
-  const bottom = insets.bottom >= 32 ? insets.bottom + 4 : insets.bottom > 24 ? insets.bottom : 32;
+  const bottom = insets.bottom > 0 ? insets.bottom : 0;
 
   return (
-    <Animated.View style={[styles.container, { bottom }]}>
-      <View style={[styles.firstInnerContainer, shadow]}>
+    <Animated.View style={[styles.container, { paddingBottom: bottom }]}>
+      <View style={[styles.tabContainer, shadow]}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
 
           const isFocused = state.index === index;
-          const isLast = index === state.routes.length - 1;
           const icon = isFocused ? ICONS[index].active : ICONS[index].inactive;
+          const title = ICONS[index].title;
 
           const onPress = () => {
             const event = navigation.emit({
@@ -62,14 +51,10 @@ const Tabbar = ({ state, insets, descriptors, navigation }: BottomTabBarProps) =
               accessibilityState={isFocused ? { selected: true } : {}}
               accessibilityLabel={options.tabBarAccessibilityLabel}
               onPress={onPress}
-              style={{
-                borderRadius: 20,
-                padding: 14,
-                marginRight: isLast ? 0 : 4,
-                backgroundColor: isFocused ? 'black' : 'white',
-              }}
-              onLongPress={onLongPress}>
-              <Image source={icon} style={styles.icon} tintColor={isFocused ? 'white' : 'black'} />
+              onLongPress={onLongPress}
+              style={[styles.tab, isFocused && styles.focusedTab]}>
+              <Image source={icon} style={styles.icon} />
+              {isFocused && <Text style={[styles.label, isFocused && styles.focusedLabel]}>{title}</Text>}
             </TouchableOpacity>
           );
         })}
@@ -83,30 +68,42 @@ export default Tabbar;
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    flexDirection: 'row',
-    alignSelf: 'center',
-    gap: 6,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#ffffff',
+    borderTopWidth: 1,
+    borderTopColor: '#e0e0e0',
   },
-  firstInnerContainer: {
+  tabContainer: {
     flexDirection: 'row',
-    padding: 8,
-    gap: 10,
-    borderRadius: 28,
-    backgroundColor: 'white',
+    justifyContent: 'space-around',
+    paddingVertical: 5,
   },
-  secondInnerContainer: {
+  tab: {
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 12,
-    paddingHorizontal: 22,
-    backgroundColor: 'white',
-    borderRadius: 28,
+    padding: 10,
+  },
+  focusedTab: {
+    backgroundColor: '#f0f0f0',
+    borderRadius: 20,
+    padding: 10,
   },
   icon: {
-    width: 26,
-    height: 26,
+    width: 28,
+    height: 28,
+    marginRight: 10,
   },
-  rotate: {
-    transform: [{ rotateY: '180deg' }],
+  label: {
+    marginTop: 5,
+    fontSize: 12,
+    color: '#8e8e8e',
+  },
+  focusedLabel: {
+    color: '#000000',
+    fontWeight: 'bold',
   },
 });
