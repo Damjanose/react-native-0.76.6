@@ -5,7 +5,7 @@ import { OtpInput } from 'react-native-otp-entry';
 import LinearGradient from 'react-native-linear-gradient';
 import { styles } from './OtpScreen.styles.ts';
 import useAuth from '../../../providers/hooks/useAuth.ts';
-import { HeaderBackButton } from '@react-navigation/elements';
+import GoBackHeader from '../../../components/GoBackHeader.tsx';
 
 export type NavigationProps = { navigation: NavigationProp<any> };
 
@@ -23,7 +23,7 @@ const OtpScreen: React.FC<NavigationProps> = ({ navigation }) => {
     <LinearGradient colors={['#000', '#1a1a1a']} style={styles.fullHeight}>
       <SafeAreaView style={styles.fullHeight}>
         <View style={styles.header}>
-          <HeaderBackButton onPress={() => navigation.goBack()} tintColor="#fff" displayMode="minimal" />
+          <GoBackHeader />
           <Text style={styles.topTitle}>OTP</Text>
         </View>
         <View style={styles.container}>
