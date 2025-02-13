@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import colors from '../styles/colors';
+import { FullScreenCard } from '../components/Cards/FullScreenCard';
 
 const HomeScreen = () => {
   const balance = 1000;
@@ -17,47 +18,84 @@ const HomeScreen = () => {
   const transactionsCount = history.length;
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={[styles.card, styles.balanceCard]}>
-        <Text style={styles.cardTitle}>Current Balance</Text>
-        <Text style={styles.balanceAmount}>${balance}</Text>
-      </View>
-      <View style={[styles.card, styles.summaryCard]}>
-        <Text style={styles.cardTitle}>Account Summary</Text>
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Total Deposits:</Text>
-          <Text style={[styles.summaryValue, styles.depositValue]}>${totalDeposits}</Text>
+    <FullScreenCard>
+      <ScrollView style={styles.container}>
+        <View style={[styles.card, styles.balanceCard]}>
+          <Text style={styles.cardTitle}>Current Balance</Text>
+          <Text style={styles.balanceAmount}>${balance}</Text>
         </View>
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Total Withdrawals:</Text>
-          <Text style={[styles.summaryValue, styles.withdrawalValue]}>${totalWithdrawals}</Text>
+
+        <View style={[styles.card, styles.summaryCard]}>
+          <Text style={styles.cardTitle}>Account Summary</Text>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Total Deposits:</Text>
+            <Text style={[styles.summaryValue, styles.depositValue]}>${totalDeposits}</Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Total Withdrawals:</Text>
+            <Text style={[styles.summaryValue, styles.withdrawalValue]}>${totalWithdrawals}</Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Total Transactions:</Text>
+            <Text style={styles.summaryValue}>{transactionsCount}</Text>
+          </View>
         </View>
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Total Transactions:</Text>
-          <Text style={styles.summaryValue}>{transactionsCount}</Text>
+
+        <View style={[styles.card, styles.historyCard]}>
+          <Text style={styles.cardTitle}>Transaction History</Text>
+          <FlatList
+            data={history}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <View style={styles.historyItem}>
+                <Text
+                  style={[
+                    styles.historyAction,
+                    item.action === 'Deposit' ? styles.depositText : styles.withdrawalText,
+                  ]}>
+                  {item.action}
+                </Text>
+                <Text
+                  style={[
+                    styles.historyAmount,
+                    item.action === 'Deposit' ? styles.depositText : styles.withdrawalText,
+                  ]}>
+                  ${item.amount}
+                </Text>
+              </View>
+            )}
+            scrollEnabled={false}
+          />
         </View>
-      </View>
-      <View style={[styles.card, styles.historyCard]}>
-        <Text style={styles.cardTitle}>Transaction History</Text>
-        <FlatList
-          data={history}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <View style={styles.historyItem}>
-              <Text
-                style={[styles.historyAction, item.action === 'Deposit' ? styles.depositText : styles.withdrawalText]}>
-                {item.action}
-              </Text>
-              <Text
-                style={[styles.historyAmount, item.action === 'Deposit' ? styles.depositText : styles.withdrawalText]}>
-                ${item.amount}
-              </Text>
-            </View>
-          )}
-          scrollEnabled={false}
-        />
-      </View>
-    </ScrollView>
+
+        <View style={[styles.card, styles.historyCard]}>
+          <Text style={styles.cardTitle}>Transaction History1</Text>
+          <FlatList
+            data={history}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <View style={styles.historyItem}>
+                <Text
+                  style={[
+                    styles.historyAction,
+                    item.action === 'Deposit' ? styles.depositText : styles.withdrawalText,
+                  ]}>
+                  {item.action}
+                </Text>
+                <Text
+                  style={[
+                    styles.historyAmount,
+                    item.action === 'Deposit' ? styles.depositText : styles.withdrawalText,
+                  ]}>
+                  ${item.amount}
+                </Text>
+              </View>
+            )}
+            scrollEnabled={false}
+          />
+        </View>
+      </ScrollView>
+    </FullScreenCard>
   );
 };
 

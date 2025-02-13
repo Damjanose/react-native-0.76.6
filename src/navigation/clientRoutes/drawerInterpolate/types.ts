@@ -5,7 +5,7 @@ export type TDrawerList = {
   ClientBottomTabNavigator: undefined;
   Home: undefined;
   Reservation: undefined;
-  Profile: undefined;
+  Settings: undefined;
 };
 
 export type TDrawerContentItem = {

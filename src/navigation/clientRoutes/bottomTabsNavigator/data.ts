@@ -12,9 +12,14 @@ export const ICONS = [
     inactive: require('@assets/images/taxi.png'),
   },
   {
-    title: 'Profile',
-    active: require('@assets/images/user.png'),
-    inactive: require('@assets/images/user.png'),
+    title: 'Track',
+    active: require('@assets/images/track.png'),
+    inactive: require('@assets/images/track.png'),
+  },
+  {
+    title: 'Settings',
+    active: require('@assets/images/settings.png'),
+    inactive: require('@assets/images/settings.png'),
   },
 ];
 

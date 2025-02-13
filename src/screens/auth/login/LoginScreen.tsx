@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { styles } from './LoginScreen.styles.ts';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -8,11 +8,12 @@ import { TextInput, TextInputIcon } from '../../../components/TextInput';
 import useBlackOrWhite from '../../../hooks/useBlackOrWhite.ts';
 import useAuth from '../../../providers/hooks/useAuth.ts';
 import { LoginPayload } from '../../../services/auth/types.ts';
+import { SubmitButton } from '../../../components/SubmitButton';
 
 type NavigationProps = { navigation: NavigationProp<any> };
 
 const LoginScreen: React.FC<NavigationProps> = ({ navigation }) => {
-  const { login, clearFieldError, getError } = useAuth();
+  const { login, clearFieldError, getError, isLoading } = useAuth();
   const { whiteOrBlack } = useBlackOrWhite();
 
   const [payload, setPayload] = useState<LoginPayload>({
@@ -73,9 +74,11 @@ const LoginScreen: React.FC<NavigationProps> = ({ navigation }) => {
                   }
                 />
               </View>
-              <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+
+              <SubmitButton loading={isLoading} style={styles.button} onPress={handleSubmit} disabled={isLoading}>
                 <Text style={styles.buttonText}>Log In</Text>
-              </TouchableOpacity>
+              </SubmitButton>
+
               <Text style={styles.footerText}>
                 Don’t have an account?{' '}
                 <Text style={styles.link} onPress={() => navigation.navigate('RegisterScreen')}>

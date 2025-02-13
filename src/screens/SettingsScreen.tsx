@@ -3,11 +3,16 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native
 import colors from '../styles/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { FullScreenCard } from '../components/Cards/FullScreenCard';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { isIOS } from '../utils/device.ts';
 
 const settingsOptions = ['Personal Information', 'Update Profile', 'Notifications', 'Actions'];
 const supportOptions = ['Frequently Asked Questions', 'Help Section', 'Privacy & Policy', 'Share App'];
 
-const ProfileScreen = () => {
+const SettingsScreen = () => {
+  const insets = useSafeAreaInsets();
+  const paddingTop = insets.top > 24 ? (isIOS ? insets.top : insets.top + 12) : 32;
+
   const renderItem = ({ item }: { item: string }) => (
     <TouchableOpacity style={styles.button}>
       <Text>{item}</Text>
@@ -17,7 +22,7 @@ const ProfileScreen = () => {
 
   return (
     <FullScreenCard>
-      <View style={styles.container}>
+      <View style={[styles.container, { paddingTop }]}>
         <Text style={styles.sectionTitle}>Settings</Text>
         <FlatList data={settingsOptions} renderItem={renderItem} keyExtractor={item => item} scrollEnabled={false} />
 
@@ -72,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+export default SettingsScreen;
