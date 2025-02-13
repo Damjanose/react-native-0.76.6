@@ -1,7 +1,7 @@
 import Animated, { useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import React, { useEffect } from 'react';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { ICONS, shadow } from './data';
 
@@ -10,7 +10,7 @@ const Tabbar = ({ state, insets, descriptors, navigation }: BottomTabBarProps) =
 
   useEffect(() => {
     progress.value = withDelay(75, withTiming(1));
-  }, []);
+  }, [progress]);
 
   const bottom = insets.bottom > 0 ? insets.bottom : 0;
 
@@ -22,6 +22,7 @@ const Tabbar = ({ state, insets, descriptors, navigation }: BottomTabBarProps) =
 
           const isFocused = state.index === index;
           const icon = isFocused ? ICONS[index].active : ICONS[index].inactive;
+          const title = ICONS[index].title;
 
           const onPress = () => {
             const event = navigation.emit({
@@ -53,6 +54,7 @@ const Tabbar = ({ state, insets, descriptors, navigation }: BottomTabBarProps) =
               onLongPress={onLongPress}
               style={[styles.tab, isFocused && styles.focusedTab]}>
               <Image source={icon} style={styles.icon} />
+              {isFocused && <Text style={[styles.label, isFocused && styles.focusedLabel]}>{title}</Text>}
             </TouchableOpacity>
           );
         })}
@@ -69,16 +71,18 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     borderTopWidth: 1,
     borderTopColor: '#e0e0e0',
   },
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 10,
+    paddingVertical: 5,
   },
   tab: {
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
@@ -86,9 +90,20 @@ const styles = StyleSheet.create({
   focusedTab: {
     backgroundColor: '#f0f0f0',
     borderRadius: 20,
+    padding: 10,
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: 28,
+    height: 28,
+    marginRight: 10,
+  },
+  label: {
+    marginTop: 5,
+    fontSize: 12,
+    color: '#8e8e8e',
+  },
+  focusedLabel: {
+    color: '#000000',
+    fontWeight: 'bold',
   },
 });

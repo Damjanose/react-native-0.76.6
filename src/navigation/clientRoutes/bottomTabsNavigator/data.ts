@@ -2,14 +2,17 @@ import { isIOS } from '../../../utils/device.ts';
 
 export const ICONS = [
   {
+    title: 'Home',
     active: require('@assets/images/home.png'),
     inactive: require('@assets/images/home.png'),
   },
   {
+    title: 'Reservation',
     active: require('@assets/images/taxi.png'),
     inactive: require('@assets/images/taxi.png'),
   },
   {
+    title: 'Profile',
     active: require('@assets/images/user.png'),
     inactive: require('@assets/images/user.png'),
   },
