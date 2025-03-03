@@ -1,15 +1,14 @@
 import axios, { AxiosInstance, AxiosRequestHeaders } from 'axios';
 import {
   clearAccessTokenFromEncryptedStorage,
+  clearLocationFromEncryptedStorage,
   clearRefreshTokenFromEncryptedStorage,
   getAccessTokenFromEncryptedStorage,
 } from '../../store/auth/token';
 import updateTokens from './updateTokens.ts';
-// @ts-ignore
-// import { REACT_APP_BASE_URL } from '@env';
 
 const options = {
-  baseURL: '',
+  baseURL: 'http://192.168.0.46:8000/api/',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -55,6 +54,7 @@ axiosInstance.interceptors.response.use(
           if (response.response.status === 401) {
             await clearAccessTokenFromEncryptedStorage();
             await clearRefreshTokenFromEncryptedStorage();
+            await clearLocationFromEncryptedStorage();
           }
           return Promise.reject(response);
         });

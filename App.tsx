@@ -1,12 +1,13 @@
 import React from 'react';
-import RootNavigation from './src/navigation/RootNavigation.tsx';
-import QueryProvider from './src/providers/QueryProvider.tsx';
+import RootNavigation from './src/navigation/RootNavigation';
+import QueryProvider from './src/providers/QueryProvider';
 import { PaperProvider } from 'react-native-paper';
-import { SnackBarProvider } from './src/providers/SnackBarProvider.tsx';
-import { StatusBarProvider } from './src/providers/StatusBarProvider.tsx';
+import { SnackBarProvider } from './src/providers/SnackBarProvider';
+import { StatusBarProvider } from './src/providers/StatusBarProvider';
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
-import { AuthProvider } from './src/providers/AuthProvider.tsx';
+import { AuthProvider } from './src/providers/AuthProvider';
+import { LocationProvider } from './src/providers/LocationProvider';
 
 export default () => (
   <QueryProvider>
@@ -14,7 +15,9 @@ export default () => (
       <SnackBarProvider>
         <StatusBarProvider>
           <AuthProvider>
-            <RootNavigation />
+            <LocationProvider>
+              <RootNavigation />
+            </LocationProvider>
           </AuthProvider>
         </StatusBarProvider>
       </SnackBarProvider>

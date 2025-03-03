@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
-import { styles } from './LoginScreen.styles.ts';
+import { styles } from './LoginScreen.styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
 import { TextInput, TextInputIcon } from '../../../components/TextInput';
-import useBlackOrWhite from '../../../hooks/useBlackOrWhite.ts';
-import useAuth from '../../../providers/hooks/useAuth.ts';
-import { LoginPayload } from '../../../services/auth/types.ts';
+import useBlackOrWhite from '../../../hooks/useBlackOrWhite';
+import useAuth from '../../../providers/hooks/useAuth';
+import { LoginPayload } from '../../../services/auth/types';
 import { SubmitButton } from '../../../components/SubmitButton';
 
 type NavigationProps = { navigation: NavigationProp<any> };
