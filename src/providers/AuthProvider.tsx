@@ -22,7 +22,7 @@ export const AuthContext = createContext(initialContextValue);
 
 export const AuthProvider = ({ children }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isSigningIn, setIsSigningIn] = useState(true);
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userId, setUserId] = useState('');
   const [userName, setUserName] = useState('');

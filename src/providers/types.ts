@@ -41,3 +41,11 @@ export type TAuthContext = {
 export interface Props {
   children?: ReactNode;
 }
+
+export type TLocationContext = {
+  permissionGranted: boolean | null;
+  location: { longitude: number; latitude: number } | null;
+  error: string | null;
+  shouldFetchLocation: boolean;
+  setShouldFetchLocation: (value: boolean) => void;
+};

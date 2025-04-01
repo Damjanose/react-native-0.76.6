@@ -1,8 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import RegisterScreen from '../../screens/auth/register/RegisterScreen.tsx';
-import LoginScreen from '../../screens/auth/login/LoginScreen.tsx';
-import OtpScreen from '../../screens/auth/otp/OtpScreen.tsx';
+import RegisterScreen from '../../screens/auth/register/RegisterScreen';
+import LoginScreen from '../../screens/auth/login/LoginScreen';
+import OtpScreen from '../../screens/auth/otp/OtpScreen';
 
 const PublicStack = createNativeStackNavigator<{
   LoginScreen: undefined;

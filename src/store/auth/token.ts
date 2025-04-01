@@ -1,5 +1,5 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constants/auth';
+import { ACCESS_TOKEN, LOCATION_DATA, REFRESH_TOKEN } from '../../constants/auth';
 
 export const getAccessTokenFromEncryptedStorage = async (): Promise<string | void> => {
   try {
@@ -44,5 +44,25 @@ export const clearRefreshTokenFromEncryptedStorage = async (): Promise<void> => 
   const RT = await getRefreshTokenFromEncryptedStorage();
   if (RT) {
     await EncryptedStorage.removeItem(REFRESH_TOKEN);
+  }
+};
+
+export const clearLocationFromEncryptedStorage = async (): Promise<void> => {
+  try {
+    const location = await getLocationFromEncryptedStorage();
+    if (location) {
+      await EncryptedStorage.removeItem(LOCATION_DATA);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getLocationFromEncryptedStorage = async (): Promise<string | void> => {
+  try {
+    const location = await EncryptedStorage.getItem(LOCATION_DATA);
+    return location || '';
+  } catch (e) {
+    return '';
   }
 };
